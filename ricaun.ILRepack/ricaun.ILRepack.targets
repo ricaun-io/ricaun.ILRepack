@@ -58,8 +58,7 @@
     <Message Text="ILRepack: $(ILRepackFileName) [@(ILRepackInputAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" />
 
     <PropertyGroup>
-      <!-- Space before and after is used to mitigate error when double quot. -->
-      <ILRepackFullCommand> &quot;$(ILRepack)&quot; $(ILRepackCommandExtra) $(ILRepackCommandLibFolder) $(ILRepackCommandOutput) $(ILRepackCommandInputAssemblies) </ILRepackFullCommand>
+      <ILRepackFullCommand>&quot;$(ILRepack)&quot; $(ILRepackCommandExtra) $(ILRepackCommandLibFolder) $(ILRepackCommandOutput) $(ILRepackCommandInputAssemblies)</ILRepackFullCommand>
     </PropertyGroup>
 
     <!--<Message Text="ILRepack Exec: '$(ILRepackFullCommand)'" Importance="$(ILRepackImportance)" />-->
