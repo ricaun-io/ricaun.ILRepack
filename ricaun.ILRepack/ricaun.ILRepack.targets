@@ -25,7 +25,7 @@
     <ILRepackFilePathExec>ilrepack\2.0.34\tools\ILRepack.exe</ILRepackFilePathExec>
     <ILRepack Condition="'$(ILRepack)' == ''">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..\..\$(ILRepackFilePathExec)'))</ILRepack>
   </PropertyGroup>
-  
+
   <Target Name="ILRepackTarget" AfterTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
 
     <PropertyGroup>
@@ -78,8 +78,9 @@
     </PropertyGroup>
 
     <Message Text="ILRepack Exec: '$(ILRepackFullCommand)'" Importance="$(ILRepackImportance)" />
+    <Error Condition="'$(ILRepack)' == ''" Text="Unable to locate 'ILRepack.exe'" />
     <Error Condition="!Exists('$(ILRepack)')" Text="Unable to locate '$(ILRepack)'" />
-    
+
     <Exec Command="$(ILRepackFullCommand)"
           WorkingDirectory="$(MSBuildProjectDirectory)"
           ConsoleToMSBuild="true"
@@ -89,7 +90,7 @@
 
   <Target Name="ILRepackDeleteTarget" AfterTargets="ILRepackTarget" Condition="$(ILRepackDeleteEnabled)">
     <Message Text="ILRepack Delete: [@(ILRepackIncludedEmbeddedAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" />
-    
+
     <Delete Files="@(ILRepackIncludedEmbeddedAssemblies)" />
     <ItemGroup>
       <Directories Include="$([System.IO.Directory]::GetDirectories('$(OutDir)%(DestinationSubDirectory)', '*', System.IO.SearchOption.AllDirectories))"/>
