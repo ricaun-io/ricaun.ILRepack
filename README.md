@@ -5,7 +5,7 @@
 [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Build](../../actions/workflows/Build.yml/badge.svg)](../../actions)
 
-`ricaun.ILRepack` is a basic repack for .NET assemblies. Uses the package [ILRepack](https://github.com/gluck/il-repack) version `2.0.34` to repack the assembly using `Target` to replate the original dll to the repack dll.
+`ricaun.ILRepack` is a basic repack for .NET assemblies. Uses the package [ILRepack](https://github.com/gluck/il-repack) version `2.0.34` to repack the assembly using `Target` to replace the original assembly to the repack assembly with all the dependencies included.
 
 ## Installation
 
