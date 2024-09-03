@@ -72,7 +72,7 @@
       <ILRepackFullCommand> &quot;$(ILRepack)&quot; $(ILRepackCommandExtra) $(ILRepackCommandLibFolder) $(ILRepackCommandOutput) $(ILRepackCommandInputAssemblies) </ILRepackFullCommand>
     </PropertyGroup>
 
-    <!--<Message Text="ILRepack Exec: '$(ILRepackFullCommand)'" Importance="$(ILRepackImportance)" />-->
+    <Message Text="ILRepack Exec: '$(ILRepackFullCommand)'" Importance="$(ILRepackImportance)" />
 
     <Exec Command="$(ILRepackFullCommand)"
           WorkingDirectory="$(MSBuildProjectDirectory)"
