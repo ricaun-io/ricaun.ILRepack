@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ricaun.ILRepack", "ricaun.ILRepack\ricaun.ILRepack.csproj", "{4E093599-D416-450E-8146-68607610C8FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "Build\Build.csproj", "{E48463E9-0FA2-45B3-9017-C3C714E1D64D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{E0782E91-0FF1-4CB8-BA4E-137F2C59CCE2}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		LICENSE = LICENSE
+		nuget.config = nuget.config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ricaun.ILRepack.Sample", "ricaun.ILRepack.Sample\ricaun.ILRepack.Sample.csproj", "{54470DB1-EEE4-4E96-AB1D-7A46BA770260}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ricaun.ILRepack.Sample.Tests", "ricaun.ILRepack.Sample.Tests\ricaun.ILRepack.Sample.Tests.csproj", "{58B0E4CF-39CA-43B0-B87B-60957377E2C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E093599-D416-450E-8146-68607610C8FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E093599-D416-450E-8146-68607610C8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E093599-D416-450E-8146-68607610C8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E093599-D416-450E-8146-68607610C8FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E48463E9-0FA2-45B3-9017-C3C714E1D64D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E48463E9-0FA2-45B3-9017-C3C714E1D64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54470DB1-EEE4-4E96-AB1D-7A46BA770260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54470DB1-EEE4-4E96-AB1D-7A46BA770260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54470DB1-EEE4-4E96-AB1D-7A46BA770260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54470DB1-EEE4-4E96-AB1D-7A46BA770260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58B0E4CF-39CA-43B0-B87B-60957377E2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58B0E4CF-39CA-43B0-B87B-60957377E2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58B0E4CF-39CA-43B0-B87B-60957377E2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58B0E4CF-39CA-43B0-B87B-60957377E2C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {771BE10A-B68E-44D4-B821-D6A76E098B7D}
+	EndGlobalSection
+EndGlobal

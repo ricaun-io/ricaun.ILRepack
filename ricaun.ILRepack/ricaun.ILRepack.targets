@@ -1,0 +1,97 @@
+<Project>
+
+  <!--
+  <PropertyGroup>
+    <ILRepackImportance>low</ILRepackImportance>
+    <ILRepackCommandImportance>low</ILRepackCommandImportance>
+    <ILRepackCommandExtra></ILRepackCommandExtra>
+  </PropertyGroup>
+  -->
+
+  <PropertyGroup>
+    <ILRepackEnabled Condition="'$(ILRepackEnabled)' == ''">true</ILRepackEnabled>
+    <ILRepackDeleteEnabled Condition="'$(ILRepackDeleteEnabled)' == ''">true</ILRepackDeleteEnabled>
+    <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">Low</ILRepackImportance>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(ILRepackEnabled)">
+    <PackageReference Include="ILRepack" Version="2.0.34" GeneratePathProperty="true">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <Target Name="ILRepackTarget" AfterTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
+
+    <PropertyGroup>
+      <ILRepackFileName>$(TargetName)$(TargetExt)</ILRepackFileName>
+      <ILRepackProgramAssembly>$(OutputPath)$(ILRepackFileName)</ILRepackProgramAssembly>
+      <ILRepackOutputFile>$(ILRepackProgramAssembly)</ILRepackOutputFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ILRepackPossibleAssemblyReferences Include="$(OutputPath)*.dll" />
+      <ILRepackPossibleAssemblyReferences Include="$(OutputPath)*.exe" />
+      <ILRepackImpossibleAssemblyReferences
+        Include="$(OutputPath)*.*"
+        Exclude="@(ILRepackPossibleAssemblyReferences)" />
+      <ILRepackIncludedAssemblyReferences
+        Include="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')"
+        Exclude="@(ILRepackImpossibleAssemblyReferences)" />
+      <ILRepackExcludedAssemblyReferences
+        Include="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')"
+        Exclude="@(ILRepackIncludedAssemblyReferences)" />
+      <ILRepackExcludedEmbeddedAssemblies Include="$(ILRepackProgramAssembly)" />
+      <ILRepackIncludedEmbeddedAssemblies
+        Include="@(ILRepackIncludedAssemblyReferences)"
+        Exclude="@(ILRepackExcludedEmbeddedAssemblies)" />
+      <ILRepackInputAssemblies Include="$(ILRepackProgramAssembly)" />
+      <ILRepackInputAssemblies Include="@(ILRepackIncludedEmbeddedAssemblies)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <BuildReferencePath Include="@(ReferencePath)"/>
+      <BuildReferenceFolder Include="@(BuildReferencePath -> '%(RelativeDir)')"/>
+      <BuildReferenceFolderDistinct Include="@(BuildReferenceFolder -> Distinct())"/>
+      <BuildReferenceFolderDistinctSlash Include="@(BuildReferenceFolderDistinct -> '%(identity)')"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <ILRepackCommandExtra Condition="'$(ILRepackCommandExtra)' == ''"></ILRepackCommandExtra>
+      <ILRepackCommandImportance Condition="'$(ILRepackCommandImportance)' == ''">Low</ILRepackCommandImportance>
+      <ILRepackCommandOutput>/out:&quot;$(ILRepackOutputFile)&quot;</ILRepackCommandOutput>
+      <ILRepackCommandInputAssemblies>@(ILRepackInputAssemblies -> '&quot;%(identity)&quot;', ' ')</ILRepackCommandInputAssemblies>
+      <!-- Space in the end is used to mitigate slash with quot error.-->
+      <ILRepackCommandLibFolder>@(BuildReferenceFolderDistinctSlash -> '/lib:&quot;%(identity) &quot;', ' ')</ILRepackCommandLibFolder>
+    </PropertyGroup>
+
+    <Message Text="ILRepack: $(ILRepackFileName) [@(ILRepackInputAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" />
+
+    <PropertyGroup>
+      <!-- Space before and after is used to mitigate error when double quot. -->
+      <ILRepackFullCommand> &quot;$(ILRepack)&quot; $(ILRepackCommandExtra) $(ILRepackCommandLibFolder) $(ILRepackCommandOutput) $(ILRepackCommandInputAssemblies) </ILRepackFullCommand>
+    </PropertyGroup>
+
+    <!--<Message Text="ILRepack Exec: '$(ILRepackFullCommand)'" Importance="$(ILRepackImportance)" />-->
+
+    <Exec Command="$(ILRepackFullCommand)"
+          WorkingDirectory="$(MSBuildProjectDirectory)"
+          ConsoleToMSBuild="true"
+          StandardOutputImportance="$(ILRepackCommandImportance)"/>
+
+  </Target>
+
+  <Target Name="ILRepackDeleteTarget" AfterTargets="ILRepackTarget" Condition="$(ILRepackDeleteEnabled)">
+    <Message Text="ILRepack Delete: [@(ILRepackIncludedEmbeddedAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" />
+    
+    <Delete Files="@(ILRepackIncludedEmbeddedAssemblies)" />
+    <ItemGroup>
+      <Directories Include="$([System.IO.Directory]::GetDirectories('$(OutDir)%(DestinationSubDirectory)', '*', System.IO.SearchOption.AllDirectories))"/>
+      <Directories>
+        <Files>$([System.IO.Directory]::GetFiles("%(Directories.Identity)", "*", System.IO.SearchOption.AllDirectories).get_Length())</Files>
+      </Directories>
+    </ItemGroup>
+    <RemoveDir Directories="@(Directories)" Condition="%(Files)=='0'"/>
+  </Target>
+
+</Project>
