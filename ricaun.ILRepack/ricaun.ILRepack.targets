@@ -14,12 +14,12 @@
     <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">Low</ILRepackImportance>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(ILRepackEnabled)">
+  <!--<ItemGroup Condition="$(ILRepackEnabled)">
     <PackageReference Include="ILRepack" Version="2.0.34" GeneratePathProperty="true">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
+  </ItemGroup>-->
 
   <PropertyGroup>
     <ILRepackFilePathExec>ilrepack\2.0.34\tools\ILRepack.exe</ILRepackFilePathExec>
