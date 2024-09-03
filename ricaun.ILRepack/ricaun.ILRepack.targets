@@ -73,7 +73,8 @@
     </PropertyGroup>
 
     <Message Text="ILRepack Exec: '$(ILRepackFullCommand)'" Importance="$(ILRepackImportance)" />
-
+    <Error Condition="!Exists('$(ILRepack)')" Text="Unable to locate '$(ILRepack)'" />
+    
     <Exec Command="$(ILRepackFullCommand)"
           WorkingDirectory="$(MSBuildProjectDirectory)"
           ConsoleToMSBuild="true"
