@@ -13,6 +13,34 @@
 <PackageReference Include="ricaun.ILRepack" Version="*" />
 ```
 
+By default the repack is enabled when the package is used, and all the dependencies is repack and removed from the output.
+
+## Configuration
+
+### PropertyGroups
+Property Name | Default Value | Description
+-------------|--------|-------------
+`ILRepackEnabled`| `true` | Enable / Disable ILRepack target task.
+`ILRepackDeleteEnabled`| `true` | Enable / Disable delete dependencies repacked from output.
+`ILRepackImportance` | `Low` | Log importance to show in the console. (`Low` or `High`)
+`ILRepackCommandImportance` | `Low` | Log importance from the `ILRepack.exe` to show in the console. (`Low` or `High`)
+`ILRepackCommandExtra` | `` | Extra command to be used in the `ILRepack.exe`.
+
+```xml
+<PropertyGroup>
+  <ILRepackEnabled>true</ILRepackEnabled>
+  <ILRepackDeleteEnabled>true</ILRepackDeleteEnabled>
+  <ILRepackImportance>Low</ILRepackImportance>
+  <ILRepackCommandImportance>Low</ILRepackCommandImportance>
+  <ILRepackCommandExtra></ILRepackCommandExtra>
+</PropertyGroup>
+```
+
+## Todo
+- [ ] Add option to ignore specific assembly/dependencies in the ILRepack.
+- [ ] Delete dependencie debug file from the output.
+- [ ] Remove dependencies to be copy from the output.
+
 ## Release
 
 * [Latest release](../../releases/latest)
