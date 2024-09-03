@@ -21,6 +21,11 @@
     </PackageReference>
   </ItemGroup>
 
+  <PropertyGroup>
+    <ILRepackFilePathExec>ilrepack\2.0.34\tools\ILRepack.exe</ILRepackFilePathExec>
+    <ILRepack Condition="'$(ILRepack)' == ''">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..\..\$(ILRepackFilePathExec)'))</ILRepack>
+  </PropertyGroup>
+  
   <Target Name="ILRepackTarget" AfterTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
 
     <PropertyGroup>
