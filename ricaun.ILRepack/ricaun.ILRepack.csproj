@@ -31,7 +31,7 @@
 
   <PropertyGroup>
     <PackageId>ricaun.ILRepack</PackageId>
-    <Version>1.0.0-alpha.1</Version>
+    <Version>1.0.0-alpha.2</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -98,7 +98,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ILRepack" Version="2.0.34" GeneratePathProperty="true"/>
+    <PackageReference Include="ILRepack" Version="2.0.34" />
   </ItemGroup>
 
   <Target Name="CopyPackFiles" AfterTargets="Pack">

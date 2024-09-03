@@ -1,29 +1,14 @@
 <Project>
 
-  <!--
   <PropertyGroup>
-    <ILRepackImportance>low</ILRepackImportance>
-    <ILRepackCommandImportance>low</ILRepackCommandImportance>
-    <ILRepackCommandExtra></ILRepackCommandExtra>
+    <ILRepackVersion>2.0.34</ILRepackVersion>
+    <ILRepack Condition="'$(ILRepack)' == ''">$(NuGetPackageRoot)ilrepack\$(ILRepackVersion)\tools\ILRepack.exe</ILRepack>
   </PropertyGroup>
-  -->
 
   <PropertyGroup>
     <ILRepackEnabled Condition="'$(ILRepackEnabled)' == ''">true</ILRepackEnabled>
     <ILRepackDeleteEnabled Condition="'$(ILRepackDeleteEnabled)' == ''">true</ILRepackDeleteEnabled>
     <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">Low</ILRepackImportance>
-  </PropertyGroup>
-
-  <!--<ItemGroup Condition="$(ILRepackEnabled)">
-    <PackageReference Include="ILRepack" Version="2.0.34" GeneratePathProperty="true">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>-->
-
-  <PropertyGroup>
-    <ILRepackFilePathExec>ilrepack\2.0.34\tools\ILRepack.exe</ILRepackFilePathExec>
-    <ILRepack Condition="'$(ILRepack)' == ''">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..\..\$(ILRepackFilePathExec)'))</ILRepack>
   </PropertyGroup>
 
   <Target Name="ILRepackTarget" AfterTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
@@ -77,8 +62,7 @@
       <ILRepackFullCommand> &quot;$(ILRepack)&quot; $(ILRepackCommandExtra) $(ILRepackCommandLibFolder) $(ILRepackCommandOutput) $(ILRepackCommandInputAssemblies) </ILRepackFullCommand>
     </PropertyGroup>
 
-    <Message Text="ILRepack Exec: '$(ILRepackFullCommand)'" Importance="$(ILRepackImportance)" />
-    <Error Condition="'$(ILRepack)' == ''" Text="Unable to locate 'ILRepack.exe'" />
+    <!--<Message Text="ILRepack Exec: '$(ILRepackFullCommand)'" Importance="$(ILRepackImportance)" />-->
     <Error Condition="!Exists('$(ILRepack)')" Text="Unable to locate '$(ILRepack)'" />
 
     <Exec Command="$(ILRepackFullCommand)"

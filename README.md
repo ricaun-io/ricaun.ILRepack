@@ -24,7 +24,7 @@ Property Name | Default Value | Description
 `ILRepackDeleteEnabled`| `true` | Enable / Disable delete dependencies repacked from output.
 `ILRepackImportance` | `Low` | Log importance to show in the console. (`Low` or `High`)
 `ILRepackCommandImportance` | `Low` | Log importance from the `ILRepack.exe` to show in the console. (`Low` or `High`)
-`ILRepackCommandExtra` | `` | Extra command to be used in the `ILRepack.exe`.
+`ILRepackCommandExtra` |  | Extra command to be used in the `ILRepack.exe`.
 
 ```xml
 <PropertyGroup>
