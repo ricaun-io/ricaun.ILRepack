@@ -37,9 +37,11 @@
     <InternalsVisibleTo Include="$(AssemblyName).Tests" />
   </ItemGroup>
 
+  <!--
   <ItemGroup>
     <ILRepackIgnoreReferences Include="Newtonsoft.Json.dll" />
   </ItemGroup>
+  -->
 
   <PropertyGroup>
     <ILRepackImportance>High</ILRepackImportance>
