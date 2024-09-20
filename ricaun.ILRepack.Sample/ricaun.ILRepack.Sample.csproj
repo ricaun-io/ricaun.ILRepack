@@ -30,19 +30,18 @@
 
   <ItemGroup>
     <PackageReference Include="ricaun.ILRepack" Version="*-*" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Text.Json" Version="*" />
+    <PackageReference Include="Newtonsoft.Json" Version="*" />
   </ItemGroup>
 
   <ItemGroup>
     <InternalsVisibleTo Include="$(AssemblyName).Tests" />
   </ItemGroup>
 
-  <!--
   <ItemGroup>
-    <ILRepackIgnoreReferences Include="Newtonsoft.Json.dll" />
+    <ILRepackIgnoreReferences Include="System.Text.Json.dll" />
   </ItemGroup>
-  -->
-
+  
   <PropertyGroup>
     <ILRepackImportance>High</ILRepackImportance>
     <ILRepackCommandImportance>low</ILRepackCommandImportance>

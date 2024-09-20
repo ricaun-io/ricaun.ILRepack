@@ -21,11 +21,19 @@ namespace ricaun.ILRepack.Sample.Tests
         }
 
         [Test]
-        public void TestJsonName()
+        public void TestReferenceName_AreEqual()
         {
             var name = typeof(Class).Assembly.GetName().Name;
-            Console.WriteLine(JsonExtension.Name);
-            Assert.AreEqual(name, JsonExtension.Name);
+            Console.WriteLine(References.Newtonsoft_Json);
+            Assert.AreEqual(name, References.Newtonsoft_Json);
+        }
+
+        [Test]
+        public void TestReferenceName_AreNotEqual()
+        {
+            var name = typeof(Class).Assembly.GetName().Name;
+            Console.WriteLine(References.System_Text_Json);
+            Assert.AreNotEqual(name, References.System_Text_Json);
         }
 
         [Test]

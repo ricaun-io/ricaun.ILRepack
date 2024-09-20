@@ -11,7 +11,5 @@
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(value);
         }
-
-        public static string Name => typeof(Newtonsoft.Json.JsonConvert).Assembly.GetName().Name;
     }
 }
