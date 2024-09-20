@@ -10,7 +10,7 @@
     <ILRepackDeleteEnabled Condition="'$(ILRepackDeleteEnabled)' == ''">true</ILRepackDeleteEnabled>
     <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">Low</ILRepackImportance>
   </PropertyGroup>
-
+  
   <Target Name="ILRepackTarget" AfterTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
 
     <PropertyGroup>
@@ -32,6 +32,7 @@
         Include="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')"
         Exclude="@(ILRepackIncludedAssemblyReferences)" />
       <ILRepackExcludedEmbeddedAssemblies Include="$(ILRepackProgramAssembly)" />
+      <ILRepackExcludedEmbeddedAssemblies Include="@(ILRepackIgnoreReferences->'$(OutputPath)%(identity)')" />
       <ILRepackIncludedEmbeddedAssemblies
         Include="@(ILRepackIncludedAssemblyReferences)"
         Exclude="@(ILRepackExcludedEmbeddedAssemblies)" />

@@ -36,6 +36,18 @@ Property Name | Default Value | Description
 </PropertyGroup>
 ```
 
+## ItemGroup
+
+Item Group | Description
+-------------|-------------
+`ILRepackIgnoreReferences`| Ignore references to be repack.
+
+```xml
+<ItemGroup>
+  <ILRepackIgnoreReferences Include="Newtonsoft.Json.dll" />
+</ItemGroup>
+```
+
 ## Todo
 - [ ] Add option to ignore specific assembly/dependencies in the ILRepack.
 - [ ] Delete dependencie debug file from the output.
