@@ -45,7 +45,7 @@
   <PropertyGroup>
     <ILRepackImportance>High</ILRepackImportance>
     <ILRepackCommandImportance>low</ILRepackCommandImportance>
-    <ILRepackCommandExtra></ILRepackCommandExtra>
+    <ILRepackCommandExtra>/allowdup</ILRepackCommandExtra>
   </PropertyGroup>
 
 </Project>
