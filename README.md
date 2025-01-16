@@ -1,11 +1,12 @@
 # ricaun.ILRepack
 
-[![Visual Studio 2022](https://img.shields.io/badge/Visual%20Studio-2022-blue)](../..)
+[![Visual Studio 2022](https://img.shields.io/badge/Visual%20Studio-2022-blue)](https://github.com/ricaun-io/ricaun.ILRepack)
 [![Nuke](https://img.shields.io/badge/Nuke-Build-blue)](https://nuke.build/)
 [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Build](../../actions/workflows/Build.yml/badge.svg)](../../actions)
+[![Build](https://github.com/ricaun-io/ricaun.ILRepack/actions/workflows/Build.yml/badge.svg)](https://github.com/ricaun-io/ricaun.ILRepack/actions)
+[![Release](https://img.shields.io/nuget/v/ricaun.ILRepack?logo=nuget&label=release&color=blue)](https://www.nuget.org/packages/ricaun.ILRepack)
 
-`ricaun.ILRepack` is a basic repack for .NET assemblies. Uses the package [ILRepack](https://github.com/gluck/il-repack) version `2.0.34` to repack the assembly using `Target` to replace the original assembly to the repack assembly with all the dependencies included.
+`ricaun.ILRepack` is a basic repack for .NET assemblies. Uses the package [ILRepack](https://github.com/gluck/il-repack) version `2.0.36` to repack the assembly using `Target` to replace the original assembly to the repack assembly with all the dependencies included.
 
 ## Installation
 
@@ -56,7 +57,7 @@ Item Group | Description
 
 ## Release
 
-* [Latest release](../../releases/latest)
+* [Latest release](https://github.com/ricaun-io/ricaun.ILRepack/releases/latest)
 
 ## License
 
@@ -64,4 +65,4 @@ This project is [licensed](LICENSE) under the [MIT License](https://en.wikipedia
 
 ---
 
-Do you like this project? Please [star this project on GitHub](../../stargazers)!
+Do you like this project? Please [star this project on GitHub](https://github.com/ricaun-io/ricaun.ILRepack/stargazers)!
