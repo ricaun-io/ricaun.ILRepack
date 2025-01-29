@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <PackageReference Include="ricaun.ILRepack" Version="*-*" Condition="!$(Configuration.Contains('Debug'))" />
-    <PackageReference Include="System.Text.Json" Version="*" />
+    <PackageReference Include="System.Text.Json" Version="*" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="*" />
   </ItemGroup>
 
