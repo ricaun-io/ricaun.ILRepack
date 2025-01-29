@@ -28,8 +28,12 @@
     <GenerateDependencyFile>false</GenerateDependencyFile>
   </PropertyGroup>
 
+  <!-- Import ILRepack props/targets files in Debug -->
+  <Import Project="..\ricaun.ILRepack\ricaun.ILRepack.props" Condition="$(Configuration.Contains('Debug'))" />
+  <Import Project="..\ricaun.ILRepack\ricaun.ILRepack.targets" Condition="$(Configuration.Contains('Debug'))" />
+
   <ItemGroup>
-    <PackageReference Include="ricaun.ILRepack" Version="*-*" />
+    <PackageReference Include="ricaun.ILRepack" Version="*-*" Condition="!$(Configuration.Contains('Debug'))" />
     <PackageReference Include="System.Text.Json" Version="*" />
     <PackageReference Include="Newtonsoft.Json" Version="*" />
   </ItemGroup>
