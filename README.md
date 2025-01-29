@@ -10,8 +10,13 @@
 
 ## Installation
 
+Install the package using the `NuGet` package manager or using `PackageReference`.
+
 ```xml
-<PackageReference Include="ricaun.ILRepack" Version="*" />
+<PackageReference Include="ricaun.ILRepack" Version="*">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+</PackageReference>
 ```
 
 By default the repack is enabled when the package is used, and all the dependencies is repack and removed from the output.
