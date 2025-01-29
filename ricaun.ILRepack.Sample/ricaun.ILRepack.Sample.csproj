@@ -49,7 +49,7 @@
   <PropertyGroup>
     <ILRepackImportance>High</ILRepackImportance>
     <ILRepackCommandImportance>low</ILRepackCommandImportance>
-    <ILRepackCommandExtra>/allowdup</ILRepackCommandExtra>
+    <ILRepackCommandExtra>/allowdup /allowduplicateresources</ILRepackCommandExtra>
   </PropertyGroup>
 
 </Project>
