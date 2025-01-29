@@ -51,7 +51,7 @@ Item Group | Description
 
 ## Todo
 - [x] Add option to ignore specific assembly/dependencies in the ILRepack.
-- [ ] Add support to ignore assembly/dependencies in the ILRepack using start, Example: `Newtonsoft.*`.
+- [ ] Add support to ignore assembly/dependencies in the ILRepack using star, Example: `Newtonsoft.*`.
 - [ ] Delete dependencies debug file from the output.
 - [ ] Remove dependencies to be copy from the output.
 
