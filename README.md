@@ -50,13 +50,15 @@ Item Group | Description
 
 ```xml
 <ItemGroup>
-  <ILRepackIgnoreReferences Include="Newtonsoft.Json.dll" />
+  <ILRepackIgnoreReferences Include="Newtonsoft;System.Text" />
 </ItemGroup>
 ```
 
+Ignore references to be repack with file name start with `Newtonsoft` and `System.Text`.
+
 ## Todo
 - [x] Add option to ignore specific assembly/dependencies in the ILRepack.
-- [ ] Add support to ignore assembly/dependencies in the ILRepack using star, Example: `Newtonsoft.*`.
+- [x] Add support to ignore assembly/dependencies in the ILRepack using star, Example: `Newtonsoft`.
 - [ ] Delete dependencies debug file from the output.
 - [ ] Remove dependencies to be copy from the output.
 

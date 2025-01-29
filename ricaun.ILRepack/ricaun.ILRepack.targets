@@ -32,13 +32,18 @@
         Include="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')"
         Exclude="@(ILRepackIncludedAssemblyReferences)" />
       <ILRepackExcludedEmbeddedAssemblies Include="$(ILRepackProgramAssembly)" />
-      <ILRepackExcludedEmbeddedAssemblies Include="@(ILRepackIgnoreReferences->'$(OutputPath)%(identity)')" />
+      <ILRepackExcludedEmbeddedAssemblies Include="@(ILRepackIgnoreReferences->'$(OutputPath)%(identity)*')" />
       <ILRepackIncludedEmbeddedAssemblies
         Include="@(ILRepackIncludedAssemblyReferences)"
         Exclude="@(ILRepackExcludedEmbeddedAssemblies)" />
       <ILRepackInputAssemblies Include="$(ILRepackProgramAssembly)" />
       <ILRepackInputAssemblies Include="@(ILRepackIncludedEmbeddedAssemblies)" />
     </ItemGroup>
+
+    <!--
+    <Message Text="ILRepackIgnoreReferences: [@(ILRepackIgnoreReferences -> '%(identity)', ', ')]" Importance="$(ILRepackImportance)" />
+    <Message Text="ILRepackExcludedEmbeddedAssemblies: [@(ILRepackExcludedEmbeddedAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" />
+    -->
 
     <ItemGroup>
       <BuildReferencePath Include="@(ReferencePath)"/>
