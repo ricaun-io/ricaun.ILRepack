@@ -88,6 +88,7 @@
     <NoBuild>true</NoBuild>
     <NoDefaultExcludes>true</NoDefaultExcludes>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
+    <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
 
   <ItemGroup>
@@ -100,7 +101,7 @@
     <PackageReference Include="ILRepack" Version="2.0.36" />
   </ItemGroup>
 
-  <Target Name="CopyPackFiles" AfterTargets="Pack">
+  <Target Name="CopyPackFiles" AfterTargets="Pack" Condition="!$(Configuration.Contains('Debug'))">
     <PropertyGroup>
       <CopyDir>..\references\</CopyDir>
     </PropertyGroup>
