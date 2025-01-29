@@ -10,12 +10,12 @@
     <ILRepackDeleteEnabled Condition="'$(ILRepackDeleteEnabled)' == ''">true</ILRepackDeleteEnabled>
     <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">Low</ILRepackImportance>
   </PropertyGroup>
-  
-  <Target Name="ILRepackTarget" AfterTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
+
+  <Target Name="ILRepackTarget" BeforeTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
 
     <PropertyGroup>
       <ILRepackFileName>$(TargetName)$(TargetExt)</ILRepackFileName>
-      <ILRepackProgramAssembly>$(OutputPath)$(ILRepackFileName)</ILRepackProgramAssembly>
+      <ILRepackProgramAssembly>@(IntermediateAssembly->'%(FullPath)')</ILRepackProgramAssembly>
       <ILRepackOutputFile>$(ILRepackProgramAssembly)</ILRepackOutputFile>
     </PropertyGroup>
 

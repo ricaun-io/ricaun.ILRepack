@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add `ILRepackIgnoreReferences` to ignore references to be repack.
 - Add `Tests` to validate the repack.
 - Add `DevelopmentDependency` to `NuGet` package (Fix: #1)
+- Update main target to use `BeforeTargets`.
 
 [vNext]: ../../compare/1.0.0...HEAD
 [1.0.0]: ../../compare/1.0.0
