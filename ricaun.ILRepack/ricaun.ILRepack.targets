@@ -9,6 +9,7 @@
     <ILRepackEnabled Condition="'$(ILRepackEnabled)' == ''">true</ILRepackEnabled>
     <ILRepackDeleteEnabled Condition="'$(ILRepackDeleteEnabled)' == ''">true</ILRepackDeleteEnabled>
     <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">Low</ILRepackImportance>
+    <ILRepackRenameEnabled Condition="'$(ILRepackRenameEnabled)' == ''">false</ILRepackRenameEnabled>
   </PropertyGroup>
 
   <Target Name="ILRepackTarget" BeforeTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
@@ -17,6 +18,15 @@
       <ILRepackFileName>$(TargetName)$(TargetExt)</ILRepackFileName>
       <ILRepackProgramAssembly>@(IntermediateAssembly->'%(FullPath)')</ILRepackProgramAssembly>
       <ILRepackOutputFile>$(ILRepackProgramAssembly)</ILRepackOutputFile>
+      <ILRepackOutputFileName>$(ILRepackFileName)</ILRepackOutputFileName>
+      <ILRepackOutputRenameFile>$(ILRepackOutputFile)</ILRepackOutputRenameFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(ILRepackRenameEnabled)">
+      <ILRepackProgramFolder>@(IntermediateAssembly->'%(RelativeDir)')</ILRepackProgramFolder>
+      <ILRepackOutputFileRevision>$([MSBuild]::Divide($([System.DateTime]::Now.TimeOfDay.TotalSeconds), 4).ToString('F0'))</ILRepackOutputFileRevision>
+      <ILRepackOutputFileName>$(TargetName).$(ILRepackOutputFileRevision)$(TargetExt)</ILRepackOutputFileName>
+      <ILRepackOutputRenameFile>$(ILRepackProgramFolder)$(ILRepackOutputFileName)</ILRepackOutputRenameFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -36,6 +46,10 @@
       <ILRepackIncludedEmbeddedAssemblies
         Include="@(ILRepackIncludedAssemblyReferences)"
         Exclude="@(ILRepackExcludedEmbeddedAssemblies)" />
+      
+      <!-- Remove All Assemblies References -->
+      <ILRepackIncludedEmbeddedAssemblies Remove="@(ILRepackIncludedEmbeddedAssemblies)" Condition="$(ILRepackRenameEnabled)" />
+      
       <ILRepackInputAssemblies Include="$(ILRepackProgramAssembly)" />
       <ILRepackInputAssemblies Include="@(ILRepackIncludedEmbeddedAssemblies)" />
     </ItemGroup>
@@ -55,13 +69,13 @@
     <PropertyGroup>
       <ILRepackCommandExtra Condition="'$(ILRepackCommandExtra)' == ''"></ILRepackCommandExtra>
       <ILRepackCommandImportance Condition="'$(ILRepackCommandImportance)' == ''">Low</ILRepackCommandImportance>
-      <ILRepackCommandOutput>/out:&quot;$(ILRepackOutputFile)&quot;</ILRepackCommandOutput>
+      <ILRepackCommandOutput>/out:&quot;$(ILRepackOutputRenameFile)&quot;</ILRepackCommandOutput>
       <ILRepackCommandInputAssemblies>@(ILRepackInputAssemblies -> '&quot;%(identity)&quot;', ' ')</ILRepackCommandInputAssemblies>
       <!-- Space in the end is used to mitigate slash with quot error.-->
       <ILRepackCommandLibFolder>@(BuildReferenceFolderDistinctSlash -> '/lib:&quot;%(identity) &quot;', ' ')</ILRepackCommandLibFolder>
     </PropertyGroup>
 
-    <Message Text="ILRepack: $(ILRepackFileName) [@(ILRepackInputAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" />
+    <Message Text="ILRepack: $(ILRepackOutputFileName) [@(ILRepackInputAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" />
 
     <PropertyGroup>
       <ILRepackFullCommand>&quot;$(ILRepack)&quot; $(ILRepackCommandExtra) $(ILRepackCommandLibFolder) $(ILRepackCommandOutput) $(ILRepackCommandInputAssemblies)</ILRepackFullCommand>
@@ -75,6 +89,8 @@
           ConsoleToMSBuild="true"
           StandardOutputImportance="$(ILRepackCommandImportance)"/>
 
+    <Move SourceFiles="$(ILRepackOutputRenameFile)" DestinationFiles="$(ILRepackOutputFile)" Condition="$(ILRepackRenameEnabled)"/>
+
   </Target>
 
   <Target Name="ILRepackDeleteTarget" AfterTargets="ILRepackTarget" Condition="$(ILRepackEnabled) and $(ILRepackDeleteEnabled)">
@@ -87,7 +103,7 @@
         <Files>$([System.IO.Directory]::GetFiles("%(Directories.Identity)", "*", System.IO.SearchOption.AllDirectories).get_Length())</Files>
       </Directories>
     </ItemGroup>
-    <RemoveDir Directories="@(Directories)" Condition="%(Files)=='0'"/>
+    <RemoveDir Directories="@(Directories)" Condition="%(Files)=='0'"/>    
   </Target>
 
 </Project>

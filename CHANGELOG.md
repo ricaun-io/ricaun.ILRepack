@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [1.0.1] / 2025-02-03
+### Experimental Features
+- `ILRepackRenameEnabled` property to rename the output file to change the assembly name with revision.
 ### Updates
 - Update `ILRepackVersion` with condition.
 
@@ -22,4 +24,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update `ILRepackIgnoreReferences` to ignore all files starts with include name.
 
 [vNext]: ../../compare/1.0.0...HEAD
+[1.0.1]: ../../compare/1.0.0...1.0.1
 [1.0.0]: ../../compare/1.0.0
