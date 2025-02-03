@@ -94,7 +94,7 @@
   </Target>
 
   <Target Name="ILRepackDeleteTarget" AfterTargets="ILRepackTarget" Condition="$(ILRepackEnabled) and $(ILRepackDeleteEnabled)">
-    <Message Text="ILRepack Delete: [@(ILRepackIncludedEmbeddedAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" />
+    <Message Text="ILRepack Delete: [@(ILRepackIncludedEmbeddedAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" Condition="'@(ILRepackIncludedEmbeddedAssemblies->Count())' != '0'" />
 
     <Delete Files="@(ILRepackIncludedEmbeddedAssemblies)" />
     <ItemGroup>
