@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <ILRepackVersion>2.0.36</ILRepackVersion>
+    <ILRepackVersion Condition="'$(ILRepackVersion)' == ''">2.0.36</ILRepackVersion>
     <ILRepack Condition="'$(ILRepack)' == ''">$(NuGetPackageRoot)ilrepack\$(ILRepackVersion)\tools\ILRepack.exe</ILRepack>
   </PropertyGroup>
 
