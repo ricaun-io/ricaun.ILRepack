@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ILRepackIgnoreReferences Include="Newtonsoft.Json" />
+    <ILRepackIgnoreReferences Include="Newtonsoft.Json;System.Text.Encodings.Web" />
   </ItemGroup>
   
   <PropertyGroup>
