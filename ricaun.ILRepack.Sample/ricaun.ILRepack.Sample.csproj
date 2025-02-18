@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <PackageReference Include="ricaun.ILRepack" Version="*-*" Condition="!$(Configuration.Contains('Debug'))" />
-    <PackageReference Include="System.Text.Json" Version="*" PrivateAssets="All" />
+    <PackageReference Include="System.Text.Json" Version="8.*" PrivateAssets="All" Condition="$(TargetFramework.StartsWith('net4'))" />
     <PackageReference Include="Newtonsoft.Json" Version="*" />
   </ItemGroup>
 
@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ILRepackIgnoreReferences Include="Newtonsoft.Json;System.Text.Encodings.Web" />
+    <ILRepackIgnoreReferences Include="Newtonsoft.Json" />
   </ItemGroup>
   
   <PropertyGroup>
