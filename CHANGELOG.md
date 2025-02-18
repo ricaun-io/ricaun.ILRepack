@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `ILRepackRenameEnabled` property to rename the output file to change the assembly name with revision.
 ### Updates
 - Update `ILRepackVersion` with condition.
+- Update to show `TargetFramework` in the console.
 ### Sample
 - Ignore `System.Text.Encodings.Web` issue in repack.
 

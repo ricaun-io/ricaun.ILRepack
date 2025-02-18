@@ -75,7 +75,7 @@
       <ILRepackCommandLibFolder>@(BuildReferenceFolderDistinctSlash -> '/lib:&quot;%(identity) &quot;', ' ')</ILRepackCommandLibFolder>
     </PropertyGroup>
 
-    <Message Text="ILRepack: $(ILRepackOutputFileName) [@(ILRepackInputAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" />
+    <Message Text="ILRepack: $(ILRepackOutputFileName) [@(ILRepackInputAssemblies -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework))" Importance="$(ILRepackImportance)" />
 
     <PropertyGroup>
       <ILRepackFullCommand>&quot;$(ILRepack)&quot; $(ILRepackCommandExtra) $(ILRepackCommandLibFolder) $(ILRepackCommandOutput) $(ILRepackCommandInputAssemblies)</ILRepackFullCommand>
