@@ -6,7 +6,7 @@
 [![Build](https://github.com/ricaun-io/ricaun.ILRepack/actions/workflows/Build.yml/badge.svg)](https://github.com/ricaun-io/ricaun.ILRepack/actions)
 [![Release](https://img.shields.io/nuget/v/ricaun.ILRepack?logo=nuget&label=release&color=blue)](https://www.nuget.org/packages/ricaun.ILRepack)
 
-`ricaun.ILRepack` is a basic repack for .NET assemblies. Uses the package [ILRepack](https://github.com/gluck/il-repack) version `2.0.38` to repack the assembly using `Target` to replace the original assembly to the repack assembly with all the dependencies included.
+`ricaun.ILRepack` is a basic repack for .NET assemblies. Uses the package [ILRepack](https://github.com/gluck/il-repack) version `2.0.39` to repack the assembly using `Target` to replace the original assembly to the repack assembly with all the dependencies included.
 
 ## Installation
 
