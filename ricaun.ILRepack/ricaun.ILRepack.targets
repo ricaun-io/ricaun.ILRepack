@@ -1,11 +1,6 @@
 <Project>
 
   <PropertyGroup>
-    <ILRepackVersion Condition="'$(ILRepackVersion)' == ''">2.0.39</ILRepackVersion>
-    <ILRepack Condition="'$(ILRepack)' == ''">$(NuGetPackageRoot)ilrepack\$(ILRepackVersion)\tools\ILRepack.exe</ILRepack>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <ILRepackEnabled Condition="'$(ILRepackEnabled)' == ''">true</ILRepackEnabled>
     <ILRepackDeleteEnabled Condition="'$(ILRepackDeleteEnabled)' == ''">true</ILRepackDeleteEnabled>
     <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">Low</ILRepackImportance>
@@ -14,6 +9,20 @@
 
   <Target Name="ILRepackTarget" BeforeTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
 
+    <ItemGroup>
+      <ILRepackPackageVersion Include="@(PackageVersion)" Condition="'%(PackageVersion.Identity)' == 'ILRepack'"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'@(ILRepackPackageVersion->Count())' == '0'">
+      <ILRepackPackageVersion Include="@(PackageReference)" Condition="'%(PackageReference.Identity)' == 'ILRepack'"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <ILRepackVersion Condition="'@(ILRepackPackageVersion->Count())' != '0'">%(ILRepackPackageVersion.Version)</ILRepackVersion>
+      <ILRepackVersion Condition="'$(ILRepackVersion)' == ''">2.0.39</ILRepackVersion>
+      <ILRepack Condition="'$(ILRepack)' == ''">$(NuGetPackageRoot)ilrepack\$(ILRepackVersion)\tools\ILRepack.exe</ILRepack>
+    </PropertyGroup>
+    
     <PropertyGroup>
       <ILRepackFileName>$(TargetName)$(TargetExt)</ILRepackFileName>
       <ILRepackProgramAssembly>@(IntermediateAssembly->'%(FullPath)')</ILRepackProgramAssembly>
@@ -46,10 +55,10 @@
       <ILRepackIncludedEmbeddedAssemblies
         Include="@(ILRepackIncludedAssemblyReferences)"
         Exclude="@(ILRepackExcludedEmbeddedAssemblies)" />
-      
+
       <!-- Remove All Assemblies References -->
       <ILRepackIncludedEmbeddedAssemblies Remove="@(ILRepackIncludedEmbeddedAssemblies)" Condition="$(ILRepackRenameEnabled)" />
-      
+
       <ILRepackInputAssemblies Include="$(ILRepackProgramAssembly)" />
       <ILRepackInputAssemblies Include="@(ILRepackIncludedEmbeddedAssemblies)" />
     </ItemGroup>
@@ -75,7 +84,7 @@
       <ILRepackCommandLibFolder>@(BuildReferenceFolderDistinctSlash -> '/lib:&quot;%(identity) &quot;', ' ')</ILRepackCommandLibFolder>
     </PropertyGroup>
 
-    <Message Text="ILRepack: $(ILRepackOutputFileName) [@(ILRepackInputAssemblies -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework))" Importance="$(ILRepackImportance)" />
+    <Message Text="ILRepack: $(ILRepackOutputFileName) [@(ILRepackInputAssemblies -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework)) [$(ILRepackVersion)]" Importance="$(ILRepackImportance)" />
 
     <PropertyGroup>
       <ILRepackFullCommand>&quot;$(ILRepack)&quot; $(ILRepackCommandExtra) $(ILRepackCommandLibFolder) $(ILRepackCommandOutput) $(ILRepackCommandInputAssemblies)</ILRepackFullCommand>
@@ -103,7 +112,7 @@
         <Files>$([System.IO.Directory]::GetFiles("%(Directories.Identity)", "*", System.IO.SearchOption.AllDirectories).get_Length())</Files>
       </Directories>
     </ItemGroup>
-    <RemoveDir Directories="@(Directories)" Condition="%(Files)=='0'"/>    
+    <RemoveDir Directories="@(Directories)" Condition="%(Files)=='0'"/>
   </Target>
 
 </Project>

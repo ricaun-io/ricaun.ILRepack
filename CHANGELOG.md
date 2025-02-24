@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.2] / 2025-02-24
 ### Features
 - Update `ILRepack` version `2.0.39`.
+- Add `PackageReference` to find the `ILRepack` version.
 
 ## [1.0.1] / 2025-02-03
 ### Features
