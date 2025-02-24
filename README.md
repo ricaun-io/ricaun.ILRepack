@@ -59,7 +59,7 @@ Ignore references to be repack with file name start with `Newtonsoft` and `Syste
 ## Todo
 - [x] Add option to ignore specific assembly/dependencies in the ILRepack.
 - [x] Add support to ignore assembly/dependencies in the ILRepack using star, Example: `Newtonsoft`.
-- [ ] Delete dependencies debug file from the output.
+- [x] Delete dependencies debug file from the output.
 - [ ] Remove dependencies to be copy from the output.
 
 ## Release
