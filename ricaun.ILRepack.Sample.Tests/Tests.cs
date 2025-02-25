@@ -19,7 +19,7 @@ namespace ricaun.ILRepack.Sample.Tests
             Console.WriteLine(c.ToJson());
             Assert.AreEqual(c.ToString(), c.ToJson());
         }
-#if NETFRAMEWORK
+
         [Test]
         public void TestReferenceName_AreEqual()
         {
@@ -27,7 +27,7 @@ namespace ricaun.ILRepack.Sample.Tests
             Console.WriteLine(References.System_Text_Json);
             Assert.AreEqual(name, References.System_Text_Json);
         }
-#endif
+
         [Test]
         public void TestReferenceName_AreNotEqual()
         {

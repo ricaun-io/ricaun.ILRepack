@@ -6,7 +6,7 @@
 [![Build](https://github.com/ricaun-io/ricaun.ILRepack/actions/workflows/Build.yml/badge.svg)](https://github.com/ricaun-io/ricaun.ILRepack/actions)
 [![Release](https://img.shields.io/nuget/v/ricaun.ILRepack?logo=nuget&label=release&color=blue)](https://www.nuget.org/packages/ricaun.ILRepack)
 
-`ricaun.ILRepack` is a basic repack for .NET assemblies. Uses the package [ILRepack](https://github.com/gluck/il-repack) version `2.0.38` to repack the assembly using `Target` to replace the original assembly to the repack assembly with all the dependencies included.
+`ricaun.ILRepack` is a basic repack for .NET assemblies. Uses the package [ILRepack](https://github.com/gluck/il-repack) to repack the assembly using `Target` to replace the original assembly to the repack assembly with all the dependencies included.
 
 ## Installation
 
@@ -20,6 +20,17 @@ Install the package using the `NuGet` package manager or using `PackageReference
 ```
 
 By default the repack is enabled when the package is used, and all the dependencies is repack and removed from the output.
+
+## Version
+
+The package [ILRepack](https://github.com/gluck/il-repack) with version `2.0.39` is used by default to repack the assembly, if the your project contains a different version, the package will use the version from the package.
+
+```xml
+<PackageReference Include="ILRepack" Version="*">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+</PackageReference>
+```
 
 ## Configuration
 
@@ -55,12 +66,6 @@ Item Group | Description
 ```
 
 Ignore references to be repack with file name start with `Newtonsoft` and `System.Text`.
-
-## Todo
-- [x] Add option to ignore specific assembly/dependencies in the ILRepack.
-- [x] Add support to ignore assembly/dependencies in the ILRepack using star, Example: `Newtonsoft`.
-- [ ] Delete dependencies debug file from the output.
-- [ ] Remove dependencies to be copy from the output.
 
 ## Release
 

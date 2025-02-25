@@ -98,7 +98,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ILRepack" Version="2.0.38" />
+    <PackageReference Include="ILRepack" Version="2.0.39" />
   </ItemGroup>
 
   <Target Name="CopyPackFiles" AfterTargets="Pack" Condition="!$(Configuration.Contains('Debug'))">
