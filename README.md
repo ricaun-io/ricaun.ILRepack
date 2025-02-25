@@ -23,7 +23,7 @@ By default the repack is enabled when the package is used, and all the dependenc
 
 ## Version
 
-The package [ILRepack](https://github.com/gluck/il-repack) with version `2.0.39` is used by default to repack the assembly, if the package contains a different version, the package will use the version from the package.
+The package [ILRepack](https://github.com/gluck/il-repack) with version `2.0.39` is used by default to repack the assembly, if the your project contains a different version, the package will use the version from the package.
 
 ```xml
 <PackageReference Include="ILRepack" Version="*">
