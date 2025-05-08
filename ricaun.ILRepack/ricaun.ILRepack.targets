@@ -4,6 +4,7 @@
     <ILRepackEnabled Condition="'$(ILRepackEnabled)' == ''">true</ILRepackEnabled>
     <ILRepackDeleteEnabled Condition="'$(ILRepackDeleteEnabled)' == ''">true</ILRepackDeleteEnabled>
     <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">High</ILRepackImportance>
+    <ILRepackDeleteImportance Condition="'$(ILRepackDeleteImportance)' == ''">Low</ILRepackDeleteImportance>
     <ILRepackRenameEnabled Condition="'$(ILRepackRenameEnabled)' == ''">false</ILRepackRenameEnabled>
   </PropertyGroup>
 
@@ -110,7 +111,7 @@
       <ILRepackDeleteFiles Include="@(ILRepackIncludedEmbeddedAssemblies -> '%(RootDir)%(Directory)%(Filename).xml')"/>
     </ItemGroup>
 
-    <Message Text="ILRepack: $(ILRepackOutputFileName) -> Delete: [@(ILRepackIncludedEmbeddedAssemblies -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework)) [$(ILRepackVersion)]" Importance="$(ILRepackImportance)" Condition="'@(ILRepackIncludedEmbeddedAssemblies->Count())' != '0'" />
+    <Message Text="ILRepack Delete: $(ILRepackOutputFileName) -> [@(ILRepackIncludedEmbeddedAssemblies -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework)) [$(ILRepackVersion)]" Importance="$(ILRepackDeleteImportance)" Condition="'@(ILRepackIncludedEmbeddedAssemblies->Count())' != '0'" />
 
     <Delete Files="@(ILRepackDeleteFiles)" />
     <ItemGroup>
