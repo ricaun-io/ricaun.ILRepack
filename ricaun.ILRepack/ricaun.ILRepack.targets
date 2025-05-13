@@ -3,7 +3,8 @@
   <PropertyGroup>
     <ILRepackEnabled Condition="'$(ILRepackEnabled)' == ''">true</ILRepackEnabled>
     <ILRepackDeleteEnabled Condition="'$(ILRepackDeleteEnabled)' == ''">true</ILRepackDeleteEnabled>
-    <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">Low</ILRepackImportance>
+    <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">High</ILRepackImportance>
+    <ILRepackDeleteImportance Condition="'$(ILRepackDeleteImportance)' == ''">Low</ILRepackDeleteImportance>
     <ILRepackRenameEnabled Condition="'$(ILRepackRenameEnabled)' == ''">false</ILRepackRenameEnabled>
   </PropertyGroup>
 
@@ -22,7 +23,7 @@
       <ILRepackVersion Condition="'$(ILRepackVersion)' == ''">2.0.39</ILRepackVersion>
       <ILRepack Condition="'$(ILRepack)' == ''">$(NuGetPackageRoot)ilrepack\$(ILRepackVersion)\tools\ILRepack.exe</ILRepack>
     </PropertyGroup>
-    
+
     <PropertyGroup>
       <ILRepackFileName>$(TargetName)$(TargetExt)</ILRepackFileName>
       <ILRepackProgramAssembly>@(IntermediateAssembly->'%(FullPath)')</ILRepackProgramAssembly>
@@ -84,7 +85,7 @@
       <ILRepackCommandLibFolder>@(BuildReferenceFolderDistinctSlash -> '/lib:&quot;%(identity) &quot;', ' ')</ILRepackCommandLibFolder>
     </PropertyGroup>
 
-    <Message Text="ILRepack: $(ILRepackOutputFileName) [@(ILRepackInputAssemblies -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework)) [$(ILRepackVersion)]" Importance="$(ILRepackImportance)" />
+    <Message Text="ILRepack: $(ILRepackOutputFileName) -> [@(ILRepackInputAssemblies -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework)) [$(ILRepackVersion)]" Importance="$(ILRepackImportance)" />
 
     <PropertyGroup>
       <ILRepackFullCommand>&quot;$(ILRepack)&quot; $(ILRepackCommandExtra) $(ILRepackCommandLibFolder) $(ILRepackCommandOutput) $(ILRepackCommandInputAssemblies)</ILRepackFullCommand>
@@ -110,7 +111,7 @@
       <ILRepackDeleteFiles Include="@(ILRepackIncludedEmbeddedAssemblies -> '%(RootDir)%(Directory)%(Filename).xml')"/>
     </ItemGroup>
 
-    <Message Text="ILRepack Delete: [@(ILRepackIncludedEmbeddedAssemblies -> '%(Filename)%(Extension)', ', ')]" Importance="$(ILRepackImportance)" Condition="'@(ILRepackIncludedEmbeddedAssemblies->Count())' != '0'" />
+    <Message Text="ILRepack Delete: $(ILRepackOutputFileName) -> [@(ILRepackIncludedEmbeddedAssemblies -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework)) [$(ILRepackVersion)]" Importance="$(ILRepackDeleteImportance)" Condition="'@(ILRepackIncludedEmbeddedAssemblies->Count())' != '0'" />
 
     <Delete Files="@(ILRepackDeleteFiles)" />
     <ItemGroup>

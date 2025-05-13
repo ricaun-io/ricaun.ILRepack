@@ -39,7 +39,8 @@ Property Name | Default Value | Description
 -------------|--------|-------------
 `ILRepackEnabled`| `true` | Enable / Disable ILRepack target task.
 `ILRepackDeleteEnabled`| `true` | Enable / Disable delete dependencies repacked from output.
-`ILRepackImportance` | `Low` | Log importance to show in the console. (`Low` or `High`)
+`ILRepackImportance` | `High` | Log importance to show in the console. (`Low` or `High`)
+`ILRepackDeleteImportance` | `Low` | Log importance to show in the console. (`Low` or `High`)
 `ILRepackCommandImportance` | `Low` | Log importance from the `ILRepack.exe` to show in the console. (`Low` or `High`)
 `ILRepackCommandExtra` |  | Extra command to be used in the `ILRepack.exe`.
 
@@ -47,7 +48,8 @@ Property Name | Default Value | Description
 <PropertyGroup>
   <ILRepackEnabled>true</ILRepackEnabled>
   <ILRepackDeleteEnabled>true</ILRepackDeleteEnabled>
-  <ILRepackImportance>Low</ILRepackImportance>
+  <ILRepackImportance>High</ILRepackImportance>
+  <ILRepackDeleteImportance>Low</ILRepackDeleteImportance>
   <ILRepackCommandImportance>Low</ILRepackCommandImportance>
   <ILRepackCommandExtra></ILRepackCommandExtra>
 </PropertyGroup>
