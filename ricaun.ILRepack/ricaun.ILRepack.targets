@@ -6,6 +6,7 @@
     <ILRepackImportance Condition="'$(ILRepackImportance)' == ''">High</ILRepackImportance>
     <ILRepackDeleteImportance Condition="'$(ILRepackDeleteImportance)' == ''">Low</ILRepackDeleteImportance>
     <ILRepackRenameEnabled Condition="'$(ILRepackRenameEnabled)' == ''">false</ILRepackRenameEnabled>
+    <ILRepackCopyXmlEnabled Condition="'$(ILRepackCopyXmlEnabled)' == ''">false</ILRepackCopyXmlEnabled>
   </PropertyGroup>
 
   <Target Name="ILRepackTarget" BeforeTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
@@ -75,6 +76,35 @@
       <BuildReferenceFolderDistinct Include="@(BuildReferenceFolder -> Distinct())"/>
       <BuildReferenceFolderDistinctSlash Include="@(BuildReferenceFolderDistinct -> '%(identity)')"/>
     </ItemGroup>
+
+    <!-- XmlDocs -->
+    <PropertyGroup>
+      <ILRepackCopyXmlEnabled Condition="'$(GenerateDocumentationFile)'">true</ILRepackCopyXmlEnabled>
+    </PropertyGroup>
+    <ItemGroup>
+      <BuildReferencePathXmlDocs Include="@(BuildReferencePath->'%(RootDir)%(Directory)%(Filename).xml')"
+                                 Condition="Exists('%(RootDir)%(Directory)%(Filename).xml')" />
+    </ItemGroup>
+    <PropertyGroup>
+      <BuildReferenceIntermediateDir>@(IntermediateAssembly->'%(RootDir)%(Directory)')</BuildReferenceIntermediateDir>
+      <BuildReferenceFolderNameXmlDocs>docs\</BuildReferenceFolderNameXmlDocs>
+      <BuildReferenceFolderXmlDocs>$(BuildReferenceIntermediateDir)$(BuildReferenceFolderNameXmlDocs)</BuildReferenceFolderXmlDocs>
+    </PropertyGroup>
+    <Copy SourceFiles="@(BuildReferencePathXmlDocs)"
+          DestinationFolder="$(BuildReferenceFolderXmlDocs)"
+          SkipUnchangedFiles="true"
+          Condition="$(ILRepackCopyXmlEnabled)"/>
+    <ItemGroup>
+      <ILRepackPossibleXmlDocs Include="$(BuildReferenceFolderXmlDocs)*.xml" />
+      <ILRepackIncludedEmbeddedXmlDocs Include="@(ILRepackIncludedEmbeddedAssemblies -> '$(BuildReferenceFolderXmlDocs)%(Filename).xml')"
+                                       Condition="Exists('$(BuildReferenceFolderXmlDocs)%(Filename).xml')"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(ILRepackIncludedEmbeddedXmlDocs)"
+          DestinationFolder="$(OutputPath)"
+          SkipUnchangedFiles="true"
+          Condition="$(ILRepackCopyXmlEnabled)"/>
+    <Message Text="ILRepack: $(TargetName).xml -> [@(ILRepackIncludedEmbeddedXmlDocs -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework)) [$(ILRepackVersion)]" Importance="$(ILRepackImportance)" Condition="$(ILRepackCopyXmlEnabled)" />
+    <RemoveDir Directories="$(BuildReferenceFolderXmlDocs)" Condition="$(ILRepackCopyXmlEnabled)" />
 
     <PropertyGroup>
       <ILRepackCommandExtra Condition="'$(ILRepackCommandExtra)' == ''"></ILRepackCommandExtra>

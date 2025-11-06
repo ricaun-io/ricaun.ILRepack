@@ -45,12 +45,17 @@
   <ItemGroup>
     <ILRepackIgnoreReferences Include="Newtonsoft.Json" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
   
   <PropertyGroup>
     <ILRepackEnabled>true</ILRepackEnabled>
     <ILRepackImportance>High</ILRepackImportance>
     <ILRepackCommandImportance>low</ILRepackCommandImportance>
-    <ILRepackCommandExtra>/allowdup /allowduplicateresources</ILRepackCommandExtra>
+    <ILRepackCommandExtra>/allowdup /allowduplicateresources /xmldocs</ILRepackCommandExtra>
   </PropertyGroup>
 
 </Project>
