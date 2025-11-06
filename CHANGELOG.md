@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add internal `ILRepackCopyXmlEnabled` to copy xml documentation references files alongside repacked assemblies.
 - The `ILRepackCopyXmlEnabled` is enable by default when `GenerateDocumentationFile` is true.
 - The command `/xmldocs` still need to be added in your `ILRepackCommandExtra` to include xml documentation in the repacked assembly.
+### Tests
+- Add `DocumentationTests` to validate xml documentation files are repacked correctly with documentation references. 
 
 ## [1.0.3] / 2025-05-08
 ### Updates
