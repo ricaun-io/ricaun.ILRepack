@@ -103,7 +103,11 @@
           DestinationFolder="$(OutputPath)"
           SkipUnchangedFiles="true"
           Condition="$(ILRepackCopyDocumentationEnabled)"/>
-    <Message Text="ILRepack: $(TargetName).xml -> [@(ILRepackIncludedEmbeddedXmlDocs -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework)) [$(ILRepackVersion)]" Importance="$(ILRepackImportance)" Condition="$(ILRepackCopyDocumentationEnabled)" />
+    <ItemGroup Condition="$(ILRepackCopyDocumentationEnabled)" >
+      <ILRepackIncludedEmbeddedXmlDocsMessage Include="$(DocumentationFile)" />
+      <ILRepackIncludedEmbeddedXmlDocsMessage Include="@(ILRepackIncludedEmbeddedXmlDocs)" />
+    </ItemGroup>
+    <Message Text="ILRepack: $([System.IO.Path]::GetFileName($(DocumentationFile))) -> [@(ILRepackIncludedEmbeddedXmlDocsMessage -> '%(Filename)%(Extension)', ', ')] ($(TargetFramework)) [$(ILRepackVersion)]" Importance="$(ILRepackImportance)" Condition="$(ILRepackCopyDocumentationEnabled)" />
     <RemoveDir Directories="$(BuildReferenceFolderXmlDocs)" Condition="$(ILRepackCopyDocumentationEnabled)" />
 
     <PropertyGroup>
