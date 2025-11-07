@@ -49,7 +49,7 @@
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
-  </PropertyGroup>
+</PropertyGroup>
   
   <PropertyGroup>
     <ILRepackEnabled>true</ILRepackEnabled>
