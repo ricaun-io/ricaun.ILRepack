@@ -80,7 +80,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ILRepack" Version="2.0.45" />
+    <PackageReference Include="ILRepack" Version="2.0.39" />
   </ItemGroup>
 
   <Target Name="CopyPackFiles" AfterTargets="Pack" Condition="!$(Configuration.Contains('Debug'))">

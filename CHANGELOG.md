@@ -6,7 +6,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.2.0] / 2026-06-16
 ### Features
-- Update `ILRepack` default version `2.0.45`.
 - Update `csproj` to remove `NoBuild` property to fix issue.
 ### Updates
 - Update csproj `PackageLicenseFile` to `LICENSE`.
