@@ -9,7 +9,12 @@
     <ILRepackCopyDocumentationEnabled Condition="'$(ILRepackCopyDocumentationEnabled)' == ''">true</ILRepackCopyDocumentationEnabled>
   </PropertyGroup>
 
-  <Target Name="ILRepackTarget" BeforeTargets="CopyFilesToOutputDirectory" Condition="$(ILRepackEnabled)">
+  <PropertyGroup>
+    <ILRepackAfterTargets Condition="'$(ILRepackAfterTargets)' == ''"></ILRepackAfterTargets>
+    <ILRepackBeforeTargets Condition="'$(ILRepackBeforeTargets)' == ''">CopyFilesToOutputDirectory</ILRepackBeforeTargets>
+  </PropertyGroup>
+
+  <Target Name="ILRepackTarget" AfterTargets="$(ILRepackAfterTargets)" BeforeTargets="$(ILRepackBeforeTargets)" Condition="$(ILRepackEnabled)">
 
     <ItemGroup>
       <ILRepackPackageVersion Include="@(PackageVersion)" Condition="'%(PackageVersion.Identity)' == 'ILRepack'"/>

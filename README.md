@@ -44,6 +44,8 @@ Property Name | Default Value | Description
 `ILRepackDeleteImportance` | `Low` | Log importance to show in the console. (`Low` or `High`)
 `ILRepackCommandImportance` | `Low` | Log importance from the `ILRepack.exe` to show in the console. (`Low` or `High`)
 `ILRepackCommandExtra` |  | Extra command to be used in the `ILRepack.exe`.
+`ILRepackAfterTargets` | | Target to run ILRepack after.
+`ILRepackBeforeTargets` | `CopyFilesToOutputDirectory` | Target to run ILRepack before.
 
 ```xml
 <PropertyGroup>
