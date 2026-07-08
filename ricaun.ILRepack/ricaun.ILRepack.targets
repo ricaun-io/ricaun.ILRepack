@@ -54,11 +54,14 @@
       <ILRepackIncludedAssemblyReferences
         Include="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')"
         Exclude="@(ILRepackImpossibleAssemblyReferences)" />
-      <ILRepackExcludedAssemblyReferences
-        Include="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')"
-        Exclude="@(ILRepackIncludedAssemblyReferences)" />
+
+      <ILRepackIncludedAssemblyReferencesNotInOutputPath
+        Include="@(ILRepackIncludedAssemblyReferences)"
+        Condition="'%(ILRepackIncludedAssemblyReferences.RelativeDir)' != '$(OutputPath)'" />
+
       <ILRepackExcludedEmbeddedAssemblies Include="$(ILRepackProgramAssembly)" />
       <ILRepackExcludedEmbeddedAssemblies Include="@(ILRepackIgnoreReferences->'$(OutputPath)%(identity)*')" />
+      <ILRepackExcludedEmbeddedAssemblies Include="@(ILRepackIncludedAssemblyReferencesNotInOutputPath)" />
       <ILRepackIncludedEmbeddedAssemblies
         Include="@(ILRepackIncludedAssemblyReferences)"
         Exclude="@(ILRepackExcludedEmbeddedAssemblies)" />
