@@ -1,6 +1,6 @@
 # ricaun.ILRepack
 
-[![Visual Studio 2022](https://img.shields.io/badge/Visual%20Studio-2022-blue)](https://github.com/ricaun-io/ricaun.ILRepack)
+[![Visual Studio 2026](https://img.shields.io/badge/Visual%20Studio-2026-blue)](https://github.com/ricaun-io/ricaun.ILRepack)
 [![Nuke](https://img.shields.io/badge/Nuke-Build-blue)](https://nuke.build/)
 [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Build](https://github.com/ricaun-io/ricaun.ILRepack/actions/workflows/Build.yml/badge.svg)](https://github.com/ricaun-io/ricaun.ILRepack/actions)

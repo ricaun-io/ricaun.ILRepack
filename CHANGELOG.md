@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Not repack assemblies that are not in the output path folder, to avoid repacking assemblies that are not part of the build output.
 ### Updates
 - Add `ILRepackIncludedAssemblyReferencesNotInOutputPath` item group to include assembly references that are not in the output path folder.
+### Build
+- Update solution to `slnx` using `dotnet sln migrate`.
 
 ## [1.2.0] / 2026-06-16
 ### Features
