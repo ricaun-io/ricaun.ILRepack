@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.3.0] / 2026-07-07
 ### Features
-- Update `ILRepack` version `2.0.45`.
+- Update `ILRepack` version `2.0.46`.
 - Add `ILRepackAfterTargets` and `ILRepackBeforeTargets` properties to customize the build targets to run `ILRepack`.
 - Not repack assemblies that are not in the output path folder, to avoid repacking assemblies that are not part of the build output.
 ### Updates
