@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] / 2026-07-07
+### Features
+- Update `ILRepack` version `2.0.46`.
+- Add `ILRepackAfterTargets` and `ILRepackBeforeTargets` properties to customize the build targets to run `ILRepack`.
+- Not repack assemblies that are not in the output path folder, to avoid repacking assemblies that are not part of the build output.
+### Updates
+- Add `ILRepackIncludedAssemblyReferencesNotInOutputPath` item group to include assembly references that are not in the output path folder.
+### Build
+- Update solution to `slnx` using `dotnet sln migrate`.
+
 ## [1.2.0] / 2026-06-16
 ### Features
 - Update `csproj` to remove `NoBuild` property to fix issue.
@@ -59,6 +69,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update `ILRepackIgnoreReferences` to ignore all files starts with include name.
 
 [vNext]: ../../compare/1.0.0...HEAD
+[1.3.0]: ../../compare/1.2.0...1.3.0
 [1.2.0]: ../../compare/1.1.0...1.2.0
 [1.1.0]: ../../compare/1.0.3...1.1.0
 [1.0.3]: ../../compare/1.0.2...1.0.3

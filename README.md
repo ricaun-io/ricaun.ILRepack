@@ -1,6 +1,6 @@
 # ricaun.ILRepack
 
-[![Visual Studio 2022](https://img.shields.io/badge/Visual%20Studio-2022-blue)](https://github.com/ricaun-io/ricaun.ILRepack)
+[![Visual Studio 2026](https://img.shields.io/badge/Visual%20Studio-2026-blue)](https://github.com/ricaun-io/ricaun.ILRepack)
 [![Nuke](https://img.shields.io/badge/Nuke-Build-blue)](https://nuke.build/)
 [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Build](https://github.com/ricaun-io/ricaun.ILRepack/actions/workflows/Build.yml/badge.svg)](https://github.com/ricaun-io/ricaun.ILRepack/actions)
@@ -23,7 +23,7 @@ By default the repack is enabled when the package is used, and all the dependenc
 
 ## Version
 
-The package [ILRepack](https://github.com/gluck/il-repack) with version `2.0.39` is used by default to repack the assembly, if the your project contains a different version, the package will use the version from the package.
+The package [ILRepack](https://github.com/gluck/il-repack) with version `2.0.46` is used by default to repack the assembly, if the your project contains a different version, the package will use the version from the package.
 
 ```xml
 <PackageReference Include="ILRepack" Version="*">
@@ -44,6 +44,8 @@ Property Name | Default Value | Description
 `ILRepackDeleteImportance` | `Low` | Log importance to show in the console. (`Low` or `High`)
 `ILRepackCommandImportance` | `Low` | Log importance from the `ILRepack.exe` to show in the console. (`Low` or `High`)
 `ILRepackCommandExtra` |  | Extra command to be used in the `ILRepack.exe`.
+`ILRepackAfterTargets` | | Target to run ILRepack after.
+`ILRepackBeforeTargets` | `CopyFilesToOutputDirectory` | Target to run ILRepack before.
 
 ```xml
 <PropertyGroup>
